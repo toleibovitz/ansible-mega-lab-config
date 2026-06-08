@@ -1,0 +1,18 @@
+[routers]
+Core-Router ansible_host=192.168.110.1
+HQ-Edge-Router ansible_host=192.168.110.2
+HQ-Router1 ansible_host=192.168.110.3
+HQ-Router2 ansible_host=192.168.110.4
+HQ-CSW1 ansible_host=192.168.110.5
+HQ-CSW2 ansible_host=192.168.110.6
+HQ-DSW1 ansible_host=192.168.110.7
+HQ-DSW2 ansible_host=192.168.110.8
+HQ-DSW3 ansible_host=192.168.110.9
+HQ-DSW4 ansible_host=192.168.110.10
+
+[routers:vars]
+ansible_user=admin
+ansible_ssh_pass=TestPassword123!
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=cisco.ios.ios

@@ -1,13 +1,13 @@
 hostname: Core-Router
 
 interfaces:
-  - name: Ethernet 0/1
+  - hostname: Ethernet 0/1
     description: To HQ-Router1
     ip: 10.0.0.1
     mask: 255.255.255.252
     enable: true
 
-  - name: Loopback0
+  - hostname: Loopback0
     description: Router-ID
     ip: 1.1.1.1
     mask: 255.255.255.255

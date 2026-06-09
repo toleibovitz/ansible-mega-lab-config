@@ -5,6 +5,7 @@
 
   roles:
     - base_config
+    - interaces
 
 - name: Configure switches
   hosts: switches
@@ -12,3 +13,4 @@
 
   roles:
     - base_config
+    - interfaces

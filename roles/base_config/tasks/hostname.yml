@@ -1,0 +1,9 @@
+- name: Configure hostname
+  hosts: routers:switches
+  gather_facts: false
+
+  tasks:
+    - name: Configure hostname
+      cisco.ios.ios_config:
+        lines:
+          - "hostname {{ hostname }}"

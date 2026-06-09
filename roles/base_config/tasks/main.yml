@@ -1,0 +1,3 @@
+---
+- import_tasks: hostname.yml
+- import_tasks: ssh.yml

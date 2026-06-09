@@ -1,0 +1,19 @@
+{% for iface in interfaces %}
+interface {{ iface.name }}
+
+{% if iface.description is defined %}
+ description {{ iface.description }}
+{% endif %}
+
+{% if iface.ip is defined %}
+ ip address {{ iface.ip }} {{ iface.mask }}
+{% endif %}
+
+{% if iface.enabled %}
+ no shutdown
+{% else %}
+ shutdown
+{% endif %}
+
+!
+{% endfor %}

@@ -1,4 +1,0 @@
----
-- name: Configure interfaces
-  cisco.ios.ios_config:
-    src: "{{ role_path }}/templates/interfaces.j2"

@@ -1,8 +1,0 @@
-- name: Backup configs
-  hosts: routers
-  gather_facts: false
-
-  tasks:
-    - name: Backup running config
-      cisco.ios.ios_config:
-        backup: true

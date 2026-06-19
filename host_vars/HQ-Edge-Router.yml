@@ -5,8 +5,10 @@ interfaces:
     description: To Core-Router
     ip: 10.0.0.2
     mask: 255.255.255.252
+    shutdown: false
 
   - interface: Loopback0
     description: Router-ID
     ip: 2.2.2.2
     mask: 255.255.255.255
+    shutdown: false

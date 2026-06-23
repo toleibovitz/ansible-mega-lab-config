@@ -1,0 +1,40 @@
+en
+conf t
+
+lldp enable
+spanning-tree mode rapid-pvst
+
+
+int range e0/1-2
+description Link HQ-DSW1
+channel-group 1 mode active
+
+int po1
+description LACP to HQ-DSW1
+switchport mode trunk
+switchport trunk allowed vlan 10
+
+int range e0/3, e1/0
+description Link HQ-DSW2
+channel-group 2 mode active
+
+int po2
+description LACP to HQ-DSW2
+switchport mode trunk
+switchport trunk allowed vlan 10
+
+
+interface Ethernet1/1
+description PC1
+switchport mode access
+switchport access vlan 10
+spanning-tree portfast
+spanning-tree bpbugaurd enable 
+
+
+interface Ethernet1/2
+description PC2
+switchport mode access
+switchport access vlan 10
+spanning-tree portfast
+spanning-tree bpbugaurd enable 

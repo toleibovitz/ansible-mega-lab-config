@@ -11,6 +11,11 @@
         state: directory
         mode: 0755
 
+    - name: Ping management IP address
+      ansible.builtin.command: "ping -c 3 {{ ansible_host }}"
+      register: ping_result
+      ignore_errors: true
+
     - name: Generate configuration file
       delegate_to: localhost
       template:

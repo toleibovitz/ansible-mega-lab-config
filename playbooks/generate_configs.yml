@@ -1,5 +1,5 @@
 - name: Generate switch configs
-  hosts: HQ-ASW1:HQ-ASW2:HQ-DSW1:HQ-DSW2:HQ-CSW1
+  hosts: HQ-ASW1:HQ-ASW2:HQ-ASW3:HQ-ASW4:HQ-ASW5:HQ-ASW6:HQ-ASW7:HQ-ASW8:HQ-ASW9:HQ-DSW1:HQ-DSW2:HQ-DSW3:HQ-DSW4:HQ-CSW1
   gather_facts: false
 
   tasks:

@@ -95,33 +95,33 @@ interfaces:
       id: 2
       mode: active
 
-  - name: PortChannel-1
+  - name: port-channel1
     description: LACP HQ-ASW1
     mode: trunk
     allowed_vlans: 10
     native_vlan: 1001
 
-  - name: PortChannel-2
+  - name: port-channel2
     description: LACP HQ-ASW2
     mode: trunk
     allowed_vlans: 20
     native_vlan: 1001
 
-  - name: PortChannel-3
+  - name: port-channel3
     description: LACP HQ-DSW2
     switchport: false
     ip_address: 10.255.255.42
     mask: 255.255.255.254
     advertise: true
 
-  - name: PortChannel-4
+  - name: port-channel4
     description: LACP HQ-CSW1
     switchport: false
     ip_address: 10.255.255.20
     mask: 255.255.255.254
     advertise: true
 
-  - name: PortChannel-5
+  - name: port-channel5
     description: LACP HQ-CSW2
     switchport: false
     ip_address: 10.255.255.32
@@ -158,7 +158,7 @@ interfaces:
     advertise: false
 
 routing:
-  protocol: ospf-
+  protocol: ospf
   process_id: 1
   area: 0
   router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"

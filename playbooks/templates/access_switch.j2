@@ -16,29 +16,34 @@ vlan {{vlan.id}}
 
 interface {{interface.name}}
     description {{interface.description}}
-{% if interface.mode is defined %}
+{% if interface.mode is defined and interface.mode == "trunk" %}
+    switchport trunk encapsulation dot1q
     switchport mode {{interface.mode}}
+    {% if interface.native_vlan is defined %}
+    switchport trunk native vlan {{interface.native_vlan}}
+    {% endif %}
+    {% if interface.allowed_vlans is defined %}
+    switchport trunk allowed vlan {{ interface.allowed_vlans }}
+    {% endif %}
 {% endif %}
 {% if interface.mode is defined and interface.mode == "access" %}
-    switchport access vlan {{interface.access_vlan}}
-{% if interface.portfast is defined %}
+    switchport mode access
+    {% if interface.access_vlan is defined %}
+    switchport access vlan {{ interface.access_vlan }}
+    {% endif %}
+    {% if interface.portfast is defined and interface.portfast %}
     spanning-tree portfast
-{% endif %}
-{% if interface.bpduguard is defined %}
+    {% endif %}
+    {% if interface.bpduguard is defined and interface.bpduguard %}
     spanning-tree bpduguard enable
-{% endif %}
-{% elif interface.mode is defined and interface.mode == "trunk" %}
-    switchport trunk encapsulation dot1q
-    switchport trunk allowed vlan {{interface.allowed_vlans}}
-{% endif %}
-{% if interface.native_vlan is defined %}
-    switchport trunk native vlan {{interface.native_vlan}}
+    {% endif %}
 {% endif %}
 {% if interface.channel_group is defined %}
     channel-group {{interface.channel_group.id}} mode {{interface.channel_group.mode}}
 {% endif%}
 {% if interface.ip_address is defined %}
-    ip address {{interface.ip_address}} {{interface.mask}}
+    no switchport
+    ip address {{ interface.ip_address }} {{ interface.mask }}
 {% endif %}
 {% if interface.shutdown is defined and not interface.shutdown %}
     no shutdown

@@ -1,7 +1,7 @@
 /generated_mops
 /MOPs
 /documentation
-
+/playbooks/generated_configs
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

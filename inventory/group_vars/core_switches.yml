@@ -1,0 +1,7 @@
+global_config:
+  spanning_tree_mode: rapid-pvst
+
+users: []
+vlans: []
+interfaces: []
+routing: []

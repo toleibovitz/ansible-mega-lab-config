@@ -1,0 +1,75 @@
+---
+hostname: HQ-ASW5
+
+users:
+  - username: admin
+    privilege_level: 15
+    password: TestPassword123!
+
+vlans:
+  - id: 50
+    description: Warehouse
+  - id: 110
+    description: Management-Plane
+
+interfaces:
+  - name: Ethernet0/0
+    description: Management
+    mode: access
+    access_vlan: 110
+
+  - name: Ethernet0/1
+    description: Link HQ-DSW3
+    channel_group:
+      id: 1
+      mode: active
+
+  - name: Ethernet0/2
+    description: Link HQ-DSW3
+    channel_group:
+      id: 1
+      mode: active
+
+  - name: Ethernet0/3
+    description: Link HQ-DSW4
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: Ethernet1/0
+    description: Link HQ-DSW4
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: Ethernet1/1
+    description: PC9
+    mode: access
+    access_vlan: 50
+    portfast: true
+    bpduguard: true
+
+  - name: Ethernet1/2
+    description: PC10
+    mode: access
+    access_vlan: 50
+    portfast: true
+    bpduguard: true
+
+  - name: PortChannel1
+    description: LACP HQ-DSW3
+    mode: trunk
+    allowed_vlans: 50
+    native_vlan: 1001
+
+  - name: PortChannel2
+    description: LACP HQ-DSW4
+    mode: trunk
+    allowed_vlans: 50
+    native_vlan: 1001
+
+  - name: vlan110
+    description: management-interface
+    ip_address: 192.168.110.17
+    mask: 255.255.255.0
+    shutdown: false

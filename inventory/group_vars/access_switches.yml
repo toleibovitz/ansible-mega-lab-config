@@ -1,0 +1,7 @@
+global_config:
+  lldp_enable: true
+  spanning_tree_mode: rapid-pvst
+
+users: []
+vlans: []
+interfaces: []

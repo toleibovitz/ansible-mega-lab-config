@@ -1,56 +1,75 @@
 ---
-global_config:
-  hostname: HQ-ASW1
-  lldp_enable: true
-  spanning_tree_mode: rapid-pvst
-  ip_routing: false
+hostname: HQ-ASW1
 
-  users:
-    username: admin
+users:
+  - username: admin
     privilege_level: 15
-    secret: 9
     password: TestPassword123!
 
+vlans:
+  - id: 10
+    description: Sales
+  - id: 110
+    description: Management-Plane
+
 interfaces:
-  Ethernet0/0:
+  - name: Ethernet0/0
     description: Management
     mode: access
     access_vlan: 110
 
-  Ethernet0/1:
+  - name: Ethernet0/1
     description: Link HQ-DSW1
     channel_group:
       id: 1
       mode: active
 
-  Ethernet0/2:
+  - name: Ethernet0/2
     description: Link HQ-DSW1
     channel_group:
       id: 1
       mode: active
 
-  Ethernet0/3:
+  - name: Ethernet0/3
     description: Link HQ-DSW2
     channel_group:
       id: 2
       mode: active
 
-  Ethernet1/0:
+  - name: Ethernet1/0
     description: Link HQ-DSW2
     channel_group:
       id: 2
       mode: active
 
-  Ethernet1/1:
+  - name: Ethernet1/1
     description: PC1
     mode: access
     access_vlan: 10
     portfast: true
     bpduguard: true
 
-  Ethernet1/2:
+  - name: Ethernet1/2
     description: PC2
     mode: access
     access_vlan: 10
     portfast: true
     bpduguard: true
+
+  - name: PortChannel1
+    description: LACP HQ-DSW1
+    mode: trunk
+    allowed_vlans: 10
+    native_vlan: 1001
+
+  - name: PortChannel2
+    description: LACP HQ-DSW2
+    mode: trunk
+    allowed_vlans: 10
+    native_vlan: 1001
+
+  - name: vlan110
+    description: management-interface
+    ip_address: 192.168.110.13
+    mask: 255.255.255.0
+    shutdown: false

@@ -1,0 +1,195 @@
+---
+hostname: HQ-CSW1
+
+users:
+  - username: admin
+    privilege_level: 15
+    password: TestPassword123!
+
+interfaces:
+  - name: Ethernet0/0
+    description: Management
+    mode: access
+    access_vlan: 110
+
+  - name: Ethernet0/1
+    description: HQ-CSW2
+    switchport: false
+    channel_group:
+      id: 7
+      mode: active
+
+  - name: Ethernet0/2
+    description: HQ-CSW2
+    switchport: false
+    channel_group:
+      id: 7
+      mode: active
+
+  - name: Ethernet0/3
+    description: HQ-CSW2
+    switchport: false
+    channel_group:
+      id: 7
+      mode: active
+
+  - name: Ethernet1/0
+    description: HQ-CSW2
+    switchport: false
+    channel_group:
+      id: 7
+      mode: active
+
+  - name: Ethernet1/1
+    description: HQ-DSW1
+    switchport: false
+    channel_group:
+      id: 1
+      mode: active
+
+  - name: Ethernet1/2
+    description: HQ- DSW1
+    switchport: false
+    channel_group:
+      id: 1
+      mode: active
+
+  - name: Ethernet1/3
+    description: HQ- DSW2
+    switchport: false
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: Ethernet2/0
+    description: HQ- DSW2
+    switchport: false
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: Ethernet2/1
+    description: HQ- DSW3
+    switchport: false
+    channel_group:
+      id: 3
+      mode: active
+
+  - name: Ethernet2/2
+    description: HQ- DSW3
+    switchport: false
+    channel_group:
+      id: 3
+      mode: active
+
+  - name: Ethernet2/3
+    description: HQ- DSW4
+    switchport: false
+    channel_group:
+      id: 4
+      mode: active
+
+  - name: Ethernet3/0
+    description: HQ- DSW4
+    switchport: false
+    channel_group:
+      id: 4
+      mode: active
+
+  - name: Ethernet3/1
+    description: HQ- DSW5
+    switchport: false
+    channel_group:
+      id: 5
+      mode: active
+
+  - name: Ethernet3/2
+    description: HQ- DSW5
+    switchport: false
+    channel_group:
+      id: 5
+      mode: active
+
+  - name: Ethernet3/3
+    description: HQ- DSW6
+    switchport: false
+    channel_group:
+      id: 6
+      mode: active
+
+  - name: Ethernet4/0
+    description: HQ- DSW6
+    switchport: false
+    channel_group:
+      id: 6
+      mode: active
+
+  - name: Ethernet4/1
+    description: HQ-Router1
+    switchport: false
+    ip_address: 10.255.255.7
+    mask: 255.255.255.254
+    advertise: true
+  - name: Ethernet4/2
+    description: HQ-Router2
+    switchport: false
+    ip_address: 10.255.255.9
+    mask: 255.255.255.254
+    advertise: true
+  - name: Ethernet4/3
+    description: DHCP-Server
+    switchport: false
+    ip_address: 10.255.255.49
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel1
+    description: LACP HQ-DSW1
+    switchport: false
+    ip_address: 10.255.255.17
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel2
+    description: LACP HQ-DSW2
+    switchport: false
+    ip_address: 10.255.255.19
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel3
+    description: LACP HQ-DSW3
+    switchport: false
+    ip_address: 10.255.255.21
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel4
+    description: LACP HQ-DSW4
+    switchport: false
+    ip_address: 10.255.255.23
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel5
+    description: LACP HQ-DSW5
+    switchport: false
+    ip_address: 10.255.255.25
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel6
+    description: LACP HQ-DSW6
+    switchport: false
+    ip_address: 10.255.255.27
+    mask: 255.255.255.254
+    advertise: true
+  - name: PortChannel7
+    description: LACP HQ-CSW2
+    switchport: false
+    ip_address: 10.255.255.15
+    mask: 255.255.255.254
+    advertise: true
+  - name: Loopback0
+    ip_address: 1.1.1.5
+    mask: 255.255.255.0
+    advertise: true
+routing:
+  protocol: ospf
+  process_id: 1
+  area: 0
+  router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"

@@ -1,0 +1,164 @@
+---
+hostname: HQ-DSW1
+
+users:
+  - username: admin
+    privilege_level: 15
+    password: TestPassword123!
+
+vlans:
+  - id: 10
+    description: Sales
+    root: primary
+  - id: 20
+    description: Engineering
+    root: secondary
+  - id: 110
+    description: Management-Plane
+
+interfaces:
+  - name: Ethernet0/0
+    description: Management
+    mode: access
+    access_vlan: 110
+
+  - name: Ethernet0/1
+    description: HQ-CSW1
+    switchport: false
+    channel_group:
+      id: 4
+      mode: active
+
+  - name: Ethernet0/2
+    description: HQ-CSW1
+    switchport: false
+    channel_group:
+      id: 4
+      mode: active
+
+  - name: Ethernet0/3
+    description: HQ-CSW2
+    switchport: false
+    channel_group:
+      id: 5
+      mode: active
+
+  - name: Ethernet1/0
+    description: HQ-CSW2
+    switchport: false
+    channel_group:
+      id: 5
+      mode: active
+  - name: Ethernet1/1
+    description: HQ-DSW2
+    switchport: false
+    channel_group:
+      id: 3
+      mode: active
+
+  - name: Ethernet1/2
+    description: HQ-DSW2
+    switchport: false
+    channel_group:
+      id: 3
+      mode: active
+
+  - name: Ethernet1/3
+    description: HQ-ASW1
+    mode: trunk
+    allowed_vlans: 10
+    channel_group:
+      id: 1
+      mode: active
+
+  - name: Ethernet2/0
+    description: HQ-ASW1
+    mode: trunk
+    allowed_vlans: 10
+    channel_group:
+      id: 1
+      mode: active
+
+  - name: Ethernet2/1
+    description: HQ-ASW2
+    mode: trunk
+    allowed_vlans: 20
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: Ethernet2/2
+    description: HQ-ASW2
+    mode: trunk
+    allowed_vlans: 20
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: PortChannel1
+    description: LACP HQ-ASW1
+    mode: trunk
+    allowed_vlans: 10
+    native_vlan: 1001
+
+  - name: PortChannel2
+    description: LACP HQ-ASW2
+    mode: trunk
+    allowed_vlans: 20
+    native_vlan: 1001
+
+  - name: PortChannel3
+    description: LACP HQ-DSW2
+    switchport: false
+    ip_address: 10.255.255.41
+    mask: 255.255.255.254
+    advertise: true
+
+  - name: PortChannel4
+    description: LACP HQ-CSW1
+    switchport: false
+    ip_address: 10.255.255.18
+    mask: 255.255.255.254
+    advertise: true
+
+  - name: PortChannel5
+    description: LACP HQ-CSW2
+    switchport: false
+    ip_address: 10.255.255.30
+    mask: 255.255.255.254
+    advertise: true
+
+  - name: Loopback0
+    ip_address: 1.1.1.7
+    mask: 255.255.255.255
+    advertise: true
+
+  - name: vlan10
+    ip_address: 10.10.0.252
+    standby_ip_address: 10.10.0.254
+    helper_address: 10.255.255.254
+    mask: 255.255.255.0
+    role: active
+    preempt: true
+    priority: 110
+    advertise: true
+
+  - name: vlan20
+    ip_address: 10.20.0.252
+    standby_ip_address: 10.20.0.254
+    helper_address: 10.255.255.254
+    mask: 255.255.255.0
+    advertise: true
+
+  - name: vlan110
+    description: management-interface
+    ip_address: 192.168.110.7
+    mask: 255.255.255.0
+    shutdown: false
+    advertise: false
+
+routing:
+  protocol: ospf
+  process_id: 1
+  area: 0
+  router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"

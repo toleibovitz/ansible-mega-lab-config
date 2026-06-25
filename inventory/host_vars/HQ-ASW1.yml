@@ -11,6 +11,8 @@ vlans:
     description: Sales
   - id: 110
     description: Management-Plane
+  - id: 1001
+    description: native-vlan
 
 interfaces:
   - name: Ethernet0/0
@@ -56,13 +58,13 @@ interfaces:
     portfast: true
     bpduguard: true
 
-  - name: PortChannel1
+  - name: PortChannel-1
     description: LACP HQ-DSW1
     mode: trunk
     allowed_vlans: 10
     native_vlan: 1001
 
-  - name: PortChannel2
+  - name: PortChannel-2
     description: LACP HQ-DSW2
     mode: trunk
     allowed_vlans: 10

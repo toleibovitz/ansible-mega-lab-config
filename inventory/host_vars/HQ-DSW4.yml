@@ -134,45 +134,45 @@ interfaces:
       id: 4
       mode: active
 
-  - name: PortChannel1
+  - name: port-channel1
     description: LACP HQ-ASW3
     mode: trunk
     allowed_vlans: 30
     native_vlan: 1001
 
-  - name: PortChannel2
+  - name: port-channel2
     description: LACP HQ-ASW4
     mode: trunk
     allowed_vlans: 40
     native_vlan: 1001
 
-  - name: PortChannel3
+  - name: port-channel3
     description: LACP HQ-ASW5
     mode: trunk
     allowed_vlans: 50
     native_vlan: 1001
 
-  - name: PortChannel4
+  - name: port-channel4
     description: LACP HQ-ASW6
     mode: trunk
     allowed_vlans: 60
     native_vlan: 1001
 
-  - name: PortChannel5
+  - name: port-channel5
     description: LACP HQ-DSW3
     switchport: false
     ip_address: 10.255.255.44
     mask: 255.255.255.254
     advertise: true
 
-  - name: PortChannel6
+  - name: port-channel6
     description: LACP HQ-CSW1
     switchport: false
     ip_address: 10.255.255.24
     mask: 255.255.255.254
     advertise: true
 
-  - name: PortChannel7
+  - name: port-channel7
     description: LACP HQ-CSW2
     switchport: false
     ip_address: 10.255.255.36
@@ -187,21 +187,21 @@ interfaces:
   - name: vlan30
     ip_address: 10.30.0.253
     standby_ip_address: 10.30.0.254
-    helper_address: 10.255.255.254
+    helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
 
   - name: vlan40
     ip_address: 10.40.0.253
     standby_ip_address: 10.40.0.254
-    helper_address: 10.255.255.254
+    helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
 
   - name: vlan50
     ip_address: 10.50.0.253
     standby_ip_address: 10.50.0.254
-    helper_address: 10.255.255.254
+    helper_address: 10.255.255.49
     mask: 255.255.255.0
     role: active
     preempt: true
@@ -211,7 +211,7 @@ interfaces:
   - name: vlan60
     ip_address: 10.60.0.253
     standby_ip_address: 10.60.0.254
-    helper_address: 10.255.255.254
+    helper_address: 10.255.255.49
     mask: 255.255.255.0
     role: active
     preempt: true

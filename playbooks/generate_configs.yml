@@ -3,14 +3,21 @@
   gather_facts: false
 
   tasks:
-    # - name: debug and verify
-    #   ansible.builtin.debug:
-    #     msg:
-    #       - "Full interfaces list length: {{ interfaces | length }}"
-    #       - "Extracted Router ID: {{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"
-    #       - "The entire routing dictionary: {{ routing }}"
+    - name: Create local directory
+      run_once: true
+      delegate_to: localhost
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/generated_configs"
+        state: directory
+        mode: 0755
 
     - name: Generate configuration file
+      delegate_to: localhost
       template:
-        src: "/Users/tdl/workspace/network_automation/ansible-mega-lab-config/templates/{{ config_template }}"
-        dest: "/Users/tdl/workspace/network_automation/ansible-mega-lab-config/generated_mops/{{ inventory_hostname }}"
+        src: "templates/{{ config_template }}"
+        dest: "{{ playbook_dir }}/generated_configs/{{ inventory_hostname }}.ios"
+
+    - name: Push configs
+      cisco.ios.ios_config:
+        src: "generated_configs/{{ inventory_hostname }}.ios"
+        save_when: modified

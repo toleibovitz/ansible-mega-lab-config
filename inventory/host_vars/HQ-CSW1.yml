@@ -142,43 +142,43 @@ interfaces:
     ip_address: 10.255.255.49
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel1
+  - name: port-channel1
     description: LACP HQ-DSW1
     switchport: false
     ip_address: 10.255.255.17
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel2
+  - name: port-channel2
     description: LACP HQ-DSW2
     switchport: false
     ip_address: 10.255.255.19
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel3
+  - name: port-channel3
     description: LACP HQ-DSW3
     switchport: false
     ip_address: 10.255.255.21
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel4
+  - name: port-channel4
     description: LACP HQ-DSW4
     switchport: false
     ip_address: 10.255.255.23
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel5
+  - name: port-channel5
     description: LACP HQ-DSW5
     switchport: false
     ip_address: 10.255.255.25
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel6
+  - name: port-channel6
     description: LACP HQ-DSW6
     switchport: false
     ip_address: 10.255.255.27
     mask: 255.255.255.254
     advertise: true
-  - name: PortChannel7
+  - name: port-channel7
     description: LACP HQ-CSW2
     switchport: false
     ip_address: 10.255.255.15

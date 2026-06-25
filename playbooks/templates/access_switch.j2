@@ -2,9 +2,8 @@
 hostname {{ hostname }}
 {% endif %}
 lldp run
-ip routing
 ip domain name ansible-mega-lab.local
-
+spanning-tree mode {{ global_config.spanning_tree_mode }}
 {% for user in users %}
 username {{ user.username }} privilege {{ user.privilege_level }} secret {{user.password}}
 {% endfor %}
@@ -13,22 +12,10 @@ username {{ user.username }} privilege {{ user.privilege_level }} secret {{user.
 vlan {{vlan.id}}
     name {{ vlan.description }}
 {% endfor %}
-
-spanning-tree mode {{ global_config.spanning_tree_mode }}
-{% for vlan in vlans %}
-{% if vlan.root is defined %}
-spanning-tree vlan {{vlan.id}} root {{vlan.root}}
-{% endif %}
-{% endfor %}
-
 {% for interface in interfaces %}
+
 interface {{interface.name}}
-{% if interface.description is defined %}
     description {{interface.description}}
-{% endif %}
-{% if interface.switchport is defined and not interface.switchport%}
-    no switchport
-{% endif %}
 {% if interface.mode is defined %}
     switchport mode {{interface.mode}}
 {% endif %}
@@ -41,6 +28,7 @@ interface {{interface.name}}
     spanning-tree bpduguard enable
 {% endif %}
 {% elif interface.mode is defined and interface.mode == "trunk" %}
+    switchport trunk encapsulation dot1q
     switchport trunk allowed vlan {{interface.allowed_vlans}}
 {% endif %}
 {% if interface.native_vlan is defined %}
@@ -49,35 +37,14 @@ interface {{interface.name}}
 {% if interface.channel_group is defined %}
     channel-group {{interface.channel_group.id}} mode {{interface.channel_group.mode}}
 {% endif%}
-{% if interface.helper_address is defined %}
-    ip helper-address {{ interface.helper_address }}
-{% endif %}
 {% if interface.ip_address is defined %}
     ip address {{interface.ip_address}} {{interface.mask}}
-{% endif %}
-{% if interface.standby_ip_address is defined %}
-    standby {{ interface.name.lower().split("vlan")[1] }} ip {{interface.standby_ip_address}}
-{% endif %}
-{% if interface.role is defined and interface.role == "active" %}
-    standby {{ interface.name.split("vlan")[1] }} priority {{interface.priority}}
-    standby {{ interface.name.split("vlan")[1] }} preempt
 {% endif %}
 {% if interface.shutdown is defined and not interface.shutdown %}
     no shutdown
 {% endif %}
-{% if interface.advertise is defined and routing is defined and interface.advertise %}
-    ip {{ routing.protocol }} {{ routing.process_id }} area {{ routing.area}}
-{% endif %}
 
 {% endfor %}
-
-{% if routing is defined and routing.protocol == 'ospf' %}
-router ospf {{routing.process_id}}
-    log-adjacency-changes detail
-{% if routing.router_id is defined %}
-    router-id {{routing.router_id}}
-{% endif %}
-{% endif %}
 
 crypto key generate rsa modulus 2048
 

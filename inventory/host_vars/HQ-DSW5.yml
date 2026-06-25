@@ -66,33 +66,33 @@ interfaces:
     mode: trunk
     allowed_vlans: 20
 
-  - name: PortChannel1
+  - name: port-channel1
     description: LACP HQ-ASW1
     mode: trunk
     allowed_vlans: 10
     native_vlan: 1001
 
-  - name: PortChannel2
+  - name: port-channel2
     description: LACP HQ-ASW2
     mode: trunk
     allowed_vlans: 20
     native_vlan: 1001
 
-  - name: PortChannel3
+  - name: port-channel3
     description: LACP HQ-DSW2
     switchport: false
     ip_address: 10.255.255.41
     mask: 255.255.255.254
     advertise: true
 
-  - name: PortChannel4
+  - name: port-channel4
     description: LACP HQ-CSW1
     switchport: false
     ip_address: 10.255.255.18
     mask: 255.255.255.254
     advertise: true
 
-  - name: PortChannel5
+  - name: port-channel5
     description: LACP HQ-CSW2
     switchport: false
     ip_address: 10.255.255.30
@@ -107,7 +107,7 @@ interfaces:
   - name: vlan10
     ip_address: 10.10.10.252
     standby_ip_address: 10.10.10.254
-    helper_address: 10.255.255.254
+    helper_address: 10.255.255.49
     mask: 255.255.255.0
     role: active
     preempt: true
@@ -117,7 +117,7 @@ interfaces:
   - name: vlan20
     ip_address: 10.10.20.252
     standby_ip_address: 10.10.20.254
-    helper_address: 10.255.255.254
+    helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
 

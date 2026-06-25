@@ -56,13 +56,13 @@ interfaces:
     portfast: true
     bpduguard: true
 
-  - name: PortChannel1
+  - name: port-channel1
     description: LACP HQ-DSW3
     mode: trunk
     allowed_vlans: 50
     native_vlan: 1001
 
-  - name: PortChannel2
+  - name: port-channel2
     description: LACP HQ-DSW4
     mode: trunk
     allowed_vlans: 50

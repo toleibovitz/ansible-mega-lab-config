@@ -11,6 +11,8 @@ vlans:
     description: Admin
   - id: 110
     description: Management-Plane
+  - id: 1001
+    description: native-vlan
 
 interfaces:
   - name: Ethernet0/0

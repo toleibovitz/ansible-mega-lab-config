@@ -1,6 +1,6 @@
 ---
 - name: Pre-Flight Reachability Validation
-  hosts: HQ-ASW1:HQ-ASW2:HQ-DSW1:HQ-DSW2:HQ-CSW1
+  hosts: all
   gather_facts: false
   connection: local
 

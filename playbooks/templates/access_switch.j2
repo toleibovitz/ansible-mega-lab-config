@@ -42,7 +42,9 @@ interface {{interface.name}}
     channel-group {{interface.channel_group.id}} mode {{interface.channel_group.mode}}
 {% endif%}
 {% if interface.ip_address is defined %}
+{% if not interface.name.lower().startswith('vlan')%}
     no switchport
+    {% endif %}
     ip address {{ interface.ip_address }} {{ interface.mask }}
 {% endif %}
 {% if interface.shutdown is defined and not interface.shutdown %}

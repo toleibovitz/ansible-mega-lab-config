@@ -8,7 +8,7 @@ users:
 
 vlans:
   - id: 80
-    description: Executive Management
+    description: Executive-Management
   - id: 110
     description: Management-Plane
   - id: 1001

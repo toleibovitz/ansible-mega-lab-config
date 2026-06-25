@@ -163,21 +163,21 @@ interfaces:
   - name: port-channel5
     description: LACP HQ-DSW3
     switchport: false
-    ip_address: 10.255.255.44
+    ip_address: 10.255.255.43
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel6
     description: LACP HQ-CSW1
     switchport: false
-    ip_address: 10.255.255.24
+    ip_address: 10.255.255.23
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel7
     description: LACP HQ-CSW2
     switchport: false
-    ip_address: 10.255.255.36
+    ip_address: 10.255.255.35
     mask: 255.255.255.254
     advertise: true
 

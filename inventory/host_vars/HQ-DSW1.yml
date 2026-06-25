@@ -119,14 +119,14 @@ interfaces:
   - name: port-channel4
     description: LACP HQ-CSW1
     switchport: false
-    ip_address: 10.255.255.18
+    ip_address: 10.255.255.17
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel5
     description: LACP HQ-CSW2
     switchport: false
-    ip_address: 10.255.255.30
+    ip_address: 10.255.255.29
     mask: 255.255.255.254
     advertise: true
 

@@ -52,14 +52,14 @@ interfaces:
       id: 5
       mode: active
   - name: Ethernet1/1
-    description: HQ-DSW2
+    description: HQ-DSW1
     switchport: false
     channel_group:
       id: 3
       mode: active
 
   - name: Ethernet1/2
-    description: HQ-DSW2
+    description: HQ-DSW1
     switchport: false
     channel_group:
       id: 3
@@ -110,23 +110,23 @@ interfaces:
     native_vlan: 1001
 
   - name: port-channel3
-    description: LACP HQ-DSW2
+    description: LACP HQ-DSW1
     switchport: false
-    ip_address: 10.255.255.42
+    ip_address: 10.255.255.41
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel4
     description: LACP HQ-CSW1
     switchport: false
-    ip_address: 10.255.255.20
+    ip_address: 10.255.255.19
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel5
     description: LACP HQ-CSW2
     switchport: false
-    ip_address: 10.255.255.32
+    ip_address: 10.255.255.31
     mask: 255.255.255.254
     advertise: true
 

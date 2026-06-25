@@ -163,7 +163,7 @@ interfaces:
   - name: port-channel5
     description: LACP HQ-DSW4
     switchport: false
-    ip_address: 10.255.255.43
+    ip_address: 10.255.255.42
     mask: 255.255.255.254
     advertise: true
 
@@ -177,7 +177,7 @@ interfaces:
   - name: port-channel7
     description: LACP HQ-CSW2
     switchport: false
-    ip_address: 10.255.255.34
+    ip_address: 10.255.255.33
     mask: 255.255.255.254
     advertise: true
 

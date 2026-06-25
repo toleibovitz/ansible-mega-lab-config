@@ -127,70 +127,70 @@ interfaces:
   - name: Ethernet4/1
     description: HQ-Router1
     switchport: false
-    ip_address: 10.255.255.7
+    ip_address: 10.255.255.6
     mask: 255.255.255.254
     advertise: true
 
   - name: Ethernet4/2
     description: HQ-Router2
     switchport: false
-    ip_address: 10.255.255.9
+    ip_address: 10.255.255.8
     mask: 255.255.255.254
     advertise: true
 
   - name: Ethernet4/3
     description: DHCP-Server
     switchport: false
-    ip_address: 10.255.255.49
+    ip_address: 10.255.255.48
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel1
     description: LACP HQ-DSW1
     switchport: false
-    ip_address: 10.255.255.17
+    ip_address: 10.255.255.16
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel2
     description: LACP HQ-DSW2
     switchport: false
-    ip_address: 10.255.255.19
+    ip_address: 10.255.255.18
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel3
     description: LACP HQ-DSW3
     switchport: false
-    ip_address: 10.255.255.21
+    ip_address: 10.255.255.20
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel4
     description: LACP HQ-DSW4
     switchport: false
-    ip_address: 10.255.255.23
+    ip_address: 10.255.255.22
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel5
     description: LACP HQ-DSW5
     switchport: false
-    ip_address: 10.255.255.25
+    ip_address: 10.255.255.24
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel6
     description: LACP HQ-DSW6
     switchport: false
-    ip_address: 10.255.255.27
+    ip_address: 10.255.255.26
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel7
     description: LACP HQ-CSW2
     switchport: false
-    ip_address: 10.255.255.15
+    ip_address: 10.255.255.14
     mask: 255.255.255.254
     advertise: true
 

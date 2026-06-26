@@ -192,6 +192,7 @@ interfaces:
     helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
+    shutdown: false
 
   - name: vlan40
     ip_address: 10.40.0.253
@@ -199,6 +200,7 @@ interfaces:
     helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
+    shutdown: false
 
   - name: vlan50
     ip_address: 10.50.0.253
@@ -209,6 +211,7 @@ interfaces:
     preempt: true
     priority: 110
     advertise: true
+    shutdown: false
 
   - name: vlan60
     ip_address: 10.60.0.253
@@ -219,6 +222,7 @@ interfaces:
     preempt: true
     priority: 110
     advertise: true
+    shutdown: false
 
   - name: vlan110
     description: management-interface
@@ -231,3 +235,4 @@ routing:
   protocol: ospf
   process_id: 1
   area: 0
+  router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"

@@ -112,7 +112,7 @@ interfaces:
   - name: port-channel3
     description: LACP HQ-DSW2
     switchport: false
-    ip_address: 10.255.255.41
+    ip_address: 10.255.255.40
     mask: 255.255.255.254
     advertise: true
 
@@ -144,6 +144,7 @@ interfaces:
     preempt: true
     priority: 110
     advertise: true
+    shutdown: false
 
   - name: vlan20
     ip_address: 10.20.0.252
@@ -151,6 +152,7 @@ interfaces:
     helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
+    shutdown: false
 
   - name: vlan110
     description: management-interface

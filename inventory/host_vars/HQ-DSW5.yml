@@ -7,14 +7,19 @@ users:
     password: TestPassword123!
 
 vlans:
-  - id: 10
-    description: Sales
+  - id: 70
+    description: IT
     root: primary
-  - id: 20
-    description: Engineering
+  - id: 80
+    description: Executive-Management
+    root: primary
+  - id: 90
+    description: Shipping
     root: secondary
   - id: 110
     description: Management-Plane
+  - id: 1001
+    description: native-vlan
 
 interfaces:
   - name: Ethernet0/0
@@ -25,105 +30,170 @@ interfaces:
   - name: Ethernet0/1
     description: HQ-CSW1
     switchport: false
+    channel_group:
+      id: 5
+      mode: active
 
   - name: Ethernet0/2
     description: HQ-CSW1
     switchport: false
+    channel_group:
+      id: 5
+      mode: active
 
   - name: Ethernet0/3
     description: HQ-CSW2
     switchport: false
+    channel_group:
+      id: 6
+      mode: active
 
   - name: Ethernet1/0
     description: HQ-CSW2
     switchport: false
+    channel_group:
+      id: 6
+      mode: active
 
   - name: Ethernet1/1
-    description: HQ-DSW2
+    description: HQ-DSW6
     switchport: false
+    channel_group:
+      id: 4
+      mode: active
 
   - name: Ethernet1/2
-    description: HQ-DSW2
+    description: HQ-DSW6
     switchport: false
+    channel_group:
+      id: 4
+      mode: active
 
   - name: Ethernet1/3
-    description: HQ-ASW1
+    description: HQ-ASW7
     mode: trunk
-    allowed_vlans: 10
+    allowed_vlans: 70
+    channel_group:
+      id: 1
+      mode: active
 
   - name: Ethernet2/0
-    description: HQ-ASW1
+    description: HQ-ASW7
     mode: trunk
-    allowed_vlans: 10
+    allowed_vlans: 70
+    channel_group:
+      id: 1
+      mode: active
 
   - name: Ethernet2/1
-    description: HQ-ASW2
+    description: HQ-ASW8
     mode: trunk
-    allowed_vlans: 20
+    allowed_vlans: 80
+    channel_group:
+      id: 2
+      mode: active
 
   - name: Ethernet2/2
-    description: HQ-ASW2
+    description: HQ-ASW8
     mode: trunk
-    allowed_vlans: 20
+    allowed_vlans: 80
+    channel_group:
+      id: 2
+      mode: active
+
+  - name: Ethernet2/3
+    description: HQ-ASW9
+    mode: trunk
+    allowed_vlans: 90
+    channel_group:
+      id: 3
+      mode: active
+
+  - name: Ethernet3/0
+    description: HQ-ASW9
+    mode: trunk
+    allowed_vlans: 90
+    channel_group:
+      id: 3
+      mode: active
 
   - name: port-channel1
-    description: LACP HQ-ASW1
+    description: LACP HQ-ASW7
     mode: trunk
-    allowed_vlans: 10
+    allowed_vlans: 70
     native_vlan: 1001
 
   - name: port-channel2
-    description: LACP HQ-ASW2
+    description: LACP HQ-ASW8
     mode: trunk
-    allowed_vlans: 20
+    allowed_vlans: 80
     native_vlan: 1001
 
   - name: port-channel3
-    description: LACP HQ-DSW2
-    switchport: false
-    ip_address: 10.255.255.41
-    mask: 255.255.255.254
-    advertise: true
+    description: LACP HQ-ASW9
+    mode: trunk
+    allowed_vlans: 90
+    native_vlan: 1001
 
   - name: port-channel4
-    description: LACP HQ-CSW1
+    description: LACP HQ-DSW6
     switchport: false
-    ip_address: 10.255.255.18
+    ip_address: 10.255.255.44
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel5
+    description: LACP HQ-CSW1
+    switchport: false
+    ip_address: 10.255.255.25
+    mask: 255.255.255.254
+    advertise: true
+
+  - name: port-channel6
     description: LACP HQ-CSW2
     switchport: false
-    ip_address: 10.255.255.30
+    ip_address: 10.255.255.37
     mask: 255.255.255.254
     advertise: true
 
   - name: Loopback0
-    ip_address: 1.1.1.8
+    ip_address: 1.1.1.11
     mask: 255.255.255.255
     advertise: true
 
-  - name: vlan10
-    ip_address: 10.10.10.252
-    standby_ip_address: 10.10.10.254
+  - name: vlan70
+    ip_address: 10.70.0.252
+    standby_ip_address: 10.70.0.254
     helper_address: 10.255.255.49
     mask: 255.255.255.0
     role: active
     preempt: true
     priority: 110
     advertise: true
+    shutdown: false
 
-  - name: vlan20
-    ip_address: 10.10.20.252
-    standby_ip_address: 10.10.20.254
+  - name: vlan80
+    ip_address: 10.80.0.252
+    standby_ip_address: 10.80.0.254
+    helper_address: 10.255.255.49
+    mask: 255.255.255.0
+    role: active
+    preempt: true
+    priority: 110
+    advertise: true
+    shutdown: false
+
+  - name: vlan90
+    ip_address: 10.90.0.252
+    standby_ip_address: 10.90.0.254
     helper_address: 10.255.255.49
     mask: 255.255.255.0
     advertise: true
+    shutdown: false
 
   - name: vlan110
     description: management-interface
-    ip_address: 192.168.110.7
+    ip_address: 192.168.110.11
     mask: 255.255.255.0
     shutdown: false
     advertise: false
@@ -132,3 +202,4 @@ routing:
   protocol: ospf
   process_id: 1
   area: 0
+  router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"

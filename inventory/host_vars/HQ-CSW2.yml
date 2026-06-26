@@ -1,5 +1,5 @@
 ---
-hostname: HQ-CSW1
+hostname: HQ-CSW2
 
 users:
   - username: admin
@@ -13,28 +13,28 @@ interfaces:
     access_vlan: 110
 
   - name: Ethernet0/1
-    description: HQ-CSW2
+    description: HQ-CSW1
     switchport: false
     channel_group:
       id: 7
       mode: active
 
   - name: Ethernet0/2
-    description: HQ-CSW2
+    description: HQ-CSW1
     switchport: false
     channel_group:
       id: 7
       mode: active
 
   - name: Ethernet0/3
-    description: HQ-CSW2
+    description: HQ-CSW1
     switchport: false
     channel_group:
       id: 7
       mode: active
 
   - name: Ethernet1/0
-    description: HQ-CSW2
+    description: HQ-CSW1
     switchport: false
     channel_group:
       id: 7
@@ -127,81 +127,74 @@ interfaces:
   - name: Ethernet4/1
     description: HQ-Router1
     switchport: false
-    ip_address: 10.255.255.6
+    ip_address: 10.255.255.10
     mask: 255.255.255.254
     advertise: true
 
   - name: Ethernet4/2
     description: HQ-Router2
     switchport: false
-    ip_address: 10.255.255.8
-    mask: 255.255.255.254
-    advertise: true
-
-  - name: Ethernet4/3
-    description: DHCP-Server
-    switchport: false
-    ip_address: 10.255.255.48
+    ip_address: 10.255.255.12
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel1
     description: LACP HQ-DSW1
     switchport: false
-    ip_address: 10.255.255.16
+    ip_address: 10.255.255.28
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel2
     description: LACP HQ-DSW2
     switchport: false
-    ip_address: 10.255.255.18
+    ip_address: 10.255.255.30
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel3
     description: LACP HQ-DSW3
     switchport: false
-    ip_address: 10.255.255.20
+    ip_address: 10.255.255.32
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel4
     description: LACP HQ-DSW4
     switchport: false
-    ip_address: 10.255.255.22
+    ip_address: 10.255.255.34
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel5
     description: LACP HQ-DSW5
     switchport: false
-    ip_address: 10.255.255.24
+    ip_address: 10.255.255.36
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel6
     description: LACP HQ-DSW6
     switchport: false
-    ip_address: 10.255.255.26
+    ip_address: 10.255.255.38
     mask: 255.255.255.254
     advertise: true
 
   - name: port-channel7
-    description: LACP HQ-CSW2
+    description: LACP HQ-CSW1
     switchport: false
-    ip_address: 10.255.255.14
+    ip_address: 10.255.255.15
     mask: 255.255.255.254
     advertise: true
 
   - name: Loopback0
-    ip_address: 1.1.1.5
+    ip_address: 1.1.1.6
     mask: 255.255.255.0
     advertise: true
 
   - name: vlan110
     description: management-interface
-    ip_address: 192.168.110.5
+    ip_address: 192.168.110.16
     mask: 255.255.255.0
     shutdown: false
 

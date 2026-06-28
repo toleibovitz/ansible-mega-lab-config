@@ -1,5 +1,5 @@
 - name: Generate switch configs
-  hosts: all
+  hosts: routers
   gather_facts: false
 
   tasks:
@@ -11,18 +11,8 @@
         state: directory
         mode: 0755
 
-    - name: Ping management IP address
-      ansible.builtin.command: "ping -c 3 {{ ansible_host }}"
-      register: ping_result
-      ignore_errors: true
-
     - name: Generate configuration file
       delegate_to: localhost
       template:
         src: "templates/{{ config_template }}"
         dest: "{{ playbook_dir }}/generated_configs/{{ inventory_hostname }}.ios"
-
-    - name: Push configs
-      cisco.ios.ios_config:
-        src: "generated_configs/{{ inventory_hostname }}.ios"
-        save_when: modified

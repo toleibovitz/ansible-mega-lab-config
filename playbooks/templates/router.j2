@@ -1,0 +1,68 @@
+{% if hostname is defined %}
+hostname {{ hostname }}
+{% endif %}
+lldp run
+ip domain name ansible-mega-lab.local
+
+{% for user in users %}
+username {{ user.username }} privilege {{ user.privilege_level }} secret {{user.password}}
+{% endfor %}
+
+{% for interface in interfaces %}
+interface {{interface.name}}
+{% if interface.description is defined %}
+    description {{interface.description}}
+{% endif %}
+{% if interface.ip_address is defined %}
+    ip address {{interface.ip_address}} {{interface.mask}}
+{% endif %}
+{% if interface.shutdown is defined and not interface.shutdown %}
+    no shutdown
+{% endif %}
+{% if interface.advertise is defined and routing is defined and interface.advertise and interface.interface_type == "internal"%}
+    ip {{ routing.protocol }} {{ routing.process_id }} area {{ routing.area}}
+{% endif %}
+
+{% endfor %}
+
+{% if routing is defined and routing.protocol is defined and routing.protocol == 'ospf' %}
+router ospf {{routing.process_id}}
+    log-adjacency-changes detail
+{% if routing.router_id is defined %}
+    router-id {{routing.router_id}}
+{% endif %}
+{% endif %}
+
+
+{% if routing.bgp is defined %}
+router bgp {{ routing.bgp.as}}
+{% for neighbor in routing.bgp.neighbors %}
+    neighbor {{ neighbor.ip_address }} remote-as {{ neighbor.as }}
+{% endfor %}
+{% if routing.vlans %}
+{% for vlan in routing.vlans %}
+    network {{ vlan.network_address }} mask {{ vlan.mask }}    
+{% endfor %}
+{% endif %}
+{% if routing.bgp.advertise_internal_networks %}
+{% for interface in interfaces%}
+{% if interface.advertise %}
+    network {{ (interface.ip_address ~ '/' ~ interface.mask) | ansible.utils.ipaddr('network') }} mask {{ interface.mask}}
+{%endif%}
+{% endfor %}
+{% endif%}
+{%endif%}
+
+crypto key generate rsa modulus 2048
+
+ip ssh version 2
+
+line con 0
+ logging synchronous
+ exec-timeout 0 0
+
+line vty 0 4
+ login local
+ transport input telnet ssh
+
+service password-encryption

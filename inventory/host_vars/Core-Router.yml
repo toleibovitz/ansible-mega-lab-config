@@ -1,0 +1,49 @@
+hostname: Core-Router
+
+users:
+  - username: admin
+    privilege_level: 15
+    password: TestPassword123!
+
+interfaces:
+  - name: Ethernet0/0
+    description: Management
+    ip_address: 192.168.110.1
+    mask: 255.255.255.0
+    shutdown: false
+    advertise: false
+    interface_type: management
+
+  - name: Ethernet0/1
+    description: HQ-Edge-Router
+    ip_address: 10.255.255.47
+    mask: 255.255.255.254
+    shutdown: false
+    advertise: true
+    interface_type: external
+
+  - name: Ethernet0/2
+    description: DataCenter-Router
+    ip_address: 10.255.255.52
+    mask: 255.255.255.254
+    shutdown: false
+    advertise: true
+    interface_type: external
+
+  - name: Ethernet0/3
+    description: Internet
+    ip_address: 203.0.113.2
+    mask: 255.255.255.252
+    shutdown: false
+    advertise: true
+    interface_type: external
+
+routing:
+  router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"
+  vlans: []
+  bgp:
+    as: 65001
+    advertise_internal_networks: true
+    neighbors:
+      - as: 65000
+        ip_address: 10.255.255.46

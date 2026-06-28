@@ -1,0 +1,31 @@
+---
+hostname: Internet
+
+users:
+  - username: admin
+    privilege_level: 15
+    password: TestPassword123!
+
+interfaces:
+  - name: Ethernet0/0
+    description: Management
+    ip_address: 192.168.110.1
+    mask: 255.255.255.0
+    shutdown: false
+    advertise: false
+    interface_type: management
+
+  - name: Ethernet0/1
+    description: Core-Router
+    ip_address: 203.0.113.1
+    mask: 255.255.255.252
+    shutdown: false
+    advertise: false
+    interface_type: external
+
+  - name: Loopback0
+    ip_address: 10.10.10.10
+    mask: 255.255.255.255
+    shutdown: false
+    advertise: true
+    interface_type: internal

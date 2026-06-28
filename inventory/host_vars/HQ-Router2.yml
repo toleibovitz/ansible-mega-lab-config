@@ -1,0 +1,61 @@
+---
+hostname: HQ-Router2
+
+users:
+  - username: admin
+    privilege_level: 15
+    password: TestPassword123!
+
+interfaces:
+  - name: Ethernet0/0
+    description: Management
+    ip_address: 192.168.110.3
+    mask: 255.255.255.0
+    shutdown: false
+    advertise: true
+    interface_type: management
+
+  - name: Ethernet0/1
+    description: HQ-CSW1
+    ip_address: 10.255.255.9
+    mask: 255.255.255.254
+    shutdown: false
+    advertise: true
+    interface_type: internal
+
+  - name: Ethernet0/2
+    description: HQ-CSW2
+    ip_address: 10.255.255.13
+    mask: 255.255.255.254
+    shutdown: false
+    advertise: true
+    interface_type: internal
+
+  - name: Ethernet0/3
+    description: HQ-Router1
+    ip_address: 10.255.255.5
+    mask: 255.255.255.254
+    shutdown: false
+    advertise: true
+    interface_type: internal
+
+  - name: Ethernet1/0
+    description: HQ-Edge-Router
+    ip_address: 10.255.255.2
+    mask: 255.255.255.254
+    shutdown: false
+    advertise: true
+    interface_type: internal
+
+  - name: Loopback0
+    ip_address: 1.1.1.4
+    mask: 255.255.255.0
+    shutdown: false
+    advertise: true
+    interface_type: internal
+
+routing:
+  protocol: ospf
+  process_id: 1
+  area: 0
+  router_id: "{{ (interfaces | selectattr('name', 'equalto', 'Loopback0') | list | first).ip_address }}"

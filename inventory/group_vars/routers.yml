@@ -1,0 +1,22 @@
+users: []
+default_vlans:
+  - network_address: 10.10.0.0
+    mask: 255.255.255.0
+  - network_address: 10.20.0.0
+    mask: 255.255.255.0
+  - network_address: 10.30.0.0
+    mask: 255.255.255.0
+  - network_address: 10.40.0.0
+    mask: 255.255.255.0
+  - network_address: 10.50.0.0
+    mask: 255.255.255.0
+  - network_address: 10.60.0.0
+    mask: 255.255.255.0
+  - network_address: 10.70.0.0
+    mask: 255.255.255.0
+  - network_address: 10.80.0.0
+    mask: 255.255.255.0
+  - network_address: 10.90.0.0
+    mask: 255.255.255.0
+interfaces: []
+routing: []

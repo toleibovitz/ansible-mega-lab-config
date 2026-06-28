@@ -9,7 +9,7 @@ users:
 interfaces:
   - name: Ethernet0/0
     description: Management
-    ip_address: 192.168.110.3
+    ip_address: 192.168.110.4
     mask: 255.255.255.0
     shutdown: false
     advertise: true

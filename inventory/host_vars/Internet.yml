@@ -28,4 +28,4 @@ interfaces:
     mask: 255.255.255.255
     shutdown: false
     advertise: true
-    interface_type: internal
+    interface_type: external

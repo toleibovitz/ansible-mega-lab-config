@@ -47,3 +47,5 @@ routing:
     neighbors:
       - as: 65000
         ip_address: 10.255.255.46
+      - as: 65005
+        ip_address: 203.0.113.1

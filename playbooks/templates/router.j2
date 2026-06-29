@@ -31,6 +31,9 @@ router ospf {{routing.process_id}}
 {% if routing.router_id is defined %}
     router-id {{routing.router_id}}
 {% endif %}
+{% if routing.default_information is defined and routing.default_information %}
+    default-information originate 
+{% endif%}
 {% endif %}
 
 
@@ -39,7 +42,7 @@ router bgp {{ routing.bgp.as}}
 {% for neighbor in routing.bgp.neighbors %}
     neighbor {{ neighbor.ip_address }} remote-as {{ neighbor.as }}
 {% endfor %}
-{% if routing.vlans %}
+{% if routing.vlans is defined %}
 {% for vlan in routing.vlans %}
     network {{ vlan.network_address }} mask {{ vlan.mask }}    
 {% endfor %}

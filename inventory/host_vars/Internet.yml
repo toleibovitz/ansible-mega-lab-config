@@ -29,3 +29,11 @@ interfaces:
     shutdown: false
     advertise: true
     interface_type: external
+
+routing:
+  bgp:
+    as: 65005
+    advertise_internal_networks: true
+    neighbors:
+      - as: 65001
+        ip_address: 203.0.113.2
